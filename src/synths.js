@@ -6,7 +6,7 @@ export const snareSynth = new Tone.Synth({
   volume: 1,
   oscillator: {
     type: 'fmtriangle',
-    modulationType: 'sawtooth',
+    modulationType: 'square',
     harmonicity: 3.5
   },
   envelope: {
@@ -17,17 +17,29 @@ export const snareSynth = new Tone.Synth({
   }
 }).toMaster()
 
-export const hatSynth = new Tone.NoiseSynth({
-  noise: {
-    type: "white"
-  },
-  envelope: {
-    attack: 0.01,
-    decay: 0.1,
-    sustain: 0,
-    release: 0.1,
+export const whiteNoise = new Tone.NoiseSynth(
+  {
+    noise: {
+      type: 'white'
+    },
+    envelope: {
+      attack: 0.2 ,
+      decay: 0.9 ,
+      sustain: .02,
+      release: .1
+    }
   }
+
+).toMaster()
+
+export const hatSynth = new Tone.MetalSynth({
+  harmonicity: 10,
+  modulationIndex: 32,
+  resonance: 4000,
 }).toMaster()
+
+
+whiteNoise.volume.value = -45
 
 export const bassSynth = new Tone.MonoSynth(
   {
@@ -56,5 +68,16 @@ export const bassSynth = new Tone.MonoSynth(
   }
 ).toMaster()
 
+export const pluckSynth = new Tone.PolySynth(6, Tone.Synth, {
+  oscillator : {
+		type : "sine"
+  },
+  envelope : {
+    "attack" : .02,
+		"release" : 4
+	}
+}).toMaster();
+
 bassSynth.volume.value = -12
-hatSynth.volume.value = -15
+pluckSynth.volume.value = -12
+hatSynth.volume.value = -36
