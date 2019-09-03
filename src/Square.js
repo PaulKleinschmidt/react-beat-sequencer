@@ -18,7 +18,7 @@ export class Square extends React.Component {
 
   render() {
     const { active } = this.state
-    const { instrumentIsSelected, isOnCurrentBeat, isBeginningOfMeasure} = this.props
+    const { instrumentIsSelected, isOnCurrentBeat, isBeginningOfMeasure, muted } = this.props
 
     return (
       <div
@@ -27,12 +27,13 @@ export class Square extends React.Component {
           width: '40px',
           boxSizing: 'border-box',
           border:
-            !instrumentIsSelected ? isOnCurrentBeat && active ? '2px solid white' : '' :
+            !instrumentIsSelected ? isOnCurrentBeat && active ? '2px solid white' : '' : !muted &&
             isOnCurrentBeat && active ? '2px solid orange' :
             active ? '3px solid red' : '3px solid white',
-          transform: isOnCurrentBeat && active ? "rotateZ(-2deg)" : "",
+          transform: isOnCurrentBeat && active && !muted ? "rotateZ(-2deg)" : "",
           boxShadow: active && instrumentIsSelected ? '1px 1px 40px 1px red' : '',
           backgroundColor:
+            muted && isOnCurrentBeat ? '#bdbdbd' :
             isOnCurrentBeat && active ? '#0bd3d3' :
             isOnCurrentBeat ? '#f890e7' : isBeginningOfMeasure || !instrumentIsSelected ? 'gray' : 'white',
           transition: 'all .2s ease-out',
