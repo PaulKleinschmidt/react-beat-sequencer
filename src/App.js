@@ -1,7 +1,7 @@
 import React from 'react';
 import Tone from 'tone'
 import { Square } from './Square'
-import { kickSynth, snareSynth, hatSynth, bassSynth, pluckSynth, whiteNoise } from './synths';
+import { kickSynth, snareSynth, hatSynth, bassSynth, pluckSynth, whiteNoise, percSynth } from './synths';
 import { Mute } from './Mute'
 
 class App extends React.Component {
@@ -12,7 +12,8 @@ class App extends React.Component {
         drums: {
           kicks: Array(16).fill(false),
           snares: Array(16).fill(false),
-          hats: Array(16).fill(false)
+          hats: Array(16).fill(false),
+          perc: Array(16).fill(false)
         },
         bass: {
           c1: Array(16).fill(false),
@@ -56,6 +57,8 @@ class App extends React.Component {
         }
         this.state.instruments.drums.hats[currentBeat]
           && hatSynth.triggerAttackRelease('32n');
+        this.state.instruments.drums.perc[currentBeat]
+          && percSynth.triggerAttackRelease('c5', '32n');
       }
 
       // Play Bass
@@ -143,7 +146,10 @@ class App extends React.Component {
         >
           {Object.keys(this.state.instruments).map(instrument => (
             <div style={{ display: 'flex', flexDirection: 'row',  alignItems: 'center', margin: '10px'}}>
-            <Mute onClick={() => this.onMuteClick(instrument)}/>
+            <Mute
+              flash={this.state.currentBeat === 0 || !(this.state.currentBeat % 4)}
+              onClick={() => this.onMuteClick(instrument)}
+            />
             <div style={{ display: 'flex', flexDirection: 'column'}}>
               {Object.keys(this.state.instruments[instrument]).map(sound => {
                 const pads = this.state.instruments[instrument][sound]

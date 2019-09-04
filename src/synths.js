@@ -1,4 +1,6 @@
 import Tone from 'tone'
+const reverb = new Tone.JCReverb({delayTime: 0.4, wet: 0.1}).connect(Tone.Master);
+const delay = new Tone.FeedbackDelay({delayTime: 0.5, wet: 0.1});
 
 export const kickSynth = new Tone.MembraneSynth().toMaster()
 
@@ -16,6 +18,23 @@ export const snareSynth = new Tone.Synth({
     release: 0.03
   }
 }).toMaster()
+
+export const percSynth = new Tone.Synth({
+  volume: 1,
+  oscillator: {
+    type: 'fmtriangle',
+    modulationType: 'square',
+    harmonicity: 6.5
+  },
+  envelope: {
+    attack: 0.001,
+    decay: 0.06,
+    sustain: 0.4,
+    release: 0.5
+  }
+}).chain(delay, reverb);
+percSynth.volume.value = -20
+
 
 export const whiteNoise = new Tone.NoiseSynth(
   {
@@ -76,7 +95,7 @@ export const pluckSynth = new Tone.PolySynth(6, Tone.Synth, {
     "attack" : .02,
 		"release" : 4
 	}
-}).toMaster();
+}).chain(delay, reverb);
 
 bassSynth.volume.value = -12
 pluckSynth.volume.value = -12

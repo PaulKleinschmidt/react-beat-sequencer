@@ -18,17 +18,18 @@ export class Mute extends React.Component {
 
   render() {
     const { active } = this.state
+    const { flash } = this.props
     return (
       <div
         style={{
           height: '12px',
           width: '12px',
           marginRight: '10px',
-          border: '2px solid white',
+          border: '3px solid white',
           borderRadius: '50%',
-          backgroundColor: active ? '#f890e7' : '',
+          backgroundColor: active ? flash ? 'blue' : '#f890e7' : '',
           padding: '3px',
-          transition: 'all .2s ease-out',
+          transition: 'all .7s ease-out',
           cursor: 'pointer'
         }}
         onClick={this.onMuteClick}
