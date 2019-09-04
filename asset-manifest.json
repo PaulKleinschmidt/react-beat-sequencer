@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/react-beat-sequencer/static/css/main.34de6062.chunk.css",
-    "main.js": "/react-beat-sequencer/static/js/main.90d15e2b.chunk.js",
-    "main.js.map": "/react-beat-sequencer/static/js/main.90d15e2b.chunk.js.map",
+    "main.js": "/react-beat-sequencer/static/js/main.54cd3230.chunk.js",
+    "main.js.map": "/react-beat-sequencer/static/js/main.54cd3230.chunk.js.map",
     "runtime~main.js": "/react-beat-sequencer/static/js/runtime~main.6e78b334.js",
     "runtime~main.js.map": "/react-beat-sequencer/static/js/runtime~main.6e78b334.js.map",
     "static/js/2.b1f6a3f5.chunk.js": "/react-beat-sequencer/static/js/2.b1f6a3f5.chunk.js",
     "static/js/2.b1f6a3f5.chunk.js.map": "/react-beat-sequencer/static/js/2.b1f6a3f5.chunk.js.map",
     "index.html": "/react-beat-sequencer/index.html",
-    "precache-manifest.a3ad669001826cdfe415220356a9388b.js": "/react-beat-sequencer/precache-manifest.a3ad669001826cdfe415220356a9388b.js",
+    "precache-manifest.8c19ef5e1843eeb6fe9a06c88f96338e.js": "/react-beat-sequencer/precache-manifest.8c19ef5e1843eeb6fe9a06c88f96338e.js",
     "service-worker.js": "/react-beat-sequencer/service-worker.js",
     "static/css/main.34de6062.chunk.css.map": "/react-beat-sequencer/static/css/main.34de6062.chunk.css.map"
   }
