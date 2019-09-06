@@ -141,6 +141,8 @@ class App extends React.Component {
               textAlign: 'right',
               minHeight: '100vh',
               color: 'white',
+              paddingRight: '50%',
+              paddingLeft: '50%'
             }
           }
         >

@@ -27,7 +27,7 @@ export class Mute extends React.Component {
           marginRight: '10px',
           border: '3px solid white',
           borderRadius: '50%',
-          backgroundColor: active ? flash ? 'blue' : '#f890e7' : '',
+          backgroundColor: active ? flash ? '#0bd3d3' : '#f890e7' : '',
           padding: '3px',
           transition: 'all .7s ease-out',
           cursor: 'pointer'

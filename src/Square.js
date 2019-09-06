@@ -1,4 +1,5 @@
 import React from 'react';
+import './Square.css';
 
 export class Square extends React.Component {
   constructor() {
@@ -22,6 +23,7 @@ export class Square extends React.Component {
 
     return (
       <div
+        className="square"
         style={{
           height: instrumentIsSelected ? '40px' : '10px',
           width: '40px',
