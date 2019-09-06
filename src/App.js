@@ -1,5 +1,6 @@
 import React from 'react';
 import Tone from 'tone'
+import StartAudioContext from 'startaudiocontext'
 import { Square } from './Square'
 import { kickSynth, snareSynth, hatSynth, bassSynth, pluckSynth, whiteNoise, percSynth } from './synths';
 import { Mute } from './Mute'
@@ -98,8 +99,6 @@ class App extends React.Component {
   }
 
   onActivateSquare(type, index) {
-    Tone.context.resume()
-
     const selectedInstrument = this.state.selectedInstrument
     const instrumentStateCopy = JSON.parse(JSON.stringify(this.state.instruments))
     const updatedState = instrumentStateCopy[selectedInstrument][type]
@@ -118,6 +117,9 @@ class App extends React.Component {
   }
 
   render() {
+    StartAudioContext(Tone.context, '#test')
+    Tone.context.resume()
+
     return (
       <div
         style={
@@ -148,36 +150,37 @@ class App extends React.Component {
         >
           {Object.keys(this.state.instruments).map(instrument => (
             <div style={{ display: 'flex', flexDirection: 'row',  alignItems: 'center', margin: '10px'}}>
-            <Mute
-              flash={this.state.currentBeat === 0 || !(this.state.currentBeat % 4)}
-              onClick={() => this.onMuteClick(instrument)}
-            />
-            <div style={{ display: 'flex', flexDirection: 'column'}}>
-              {Object.keys(this.state.instruments[instrument]).map(sound => {
-                const pads = this.state.instruments[instrument][sound]
+              <Mute
+                flash={this.state.currentBeat === 0 || !(this.state.currentBeat % 4)}
+                onClick={() => this.onMuteClick(instrument)}
+              />
+              <div style={{ display: 'flex', flexDirection: 'column'}}>
+                {Object.keys(this.state.instruments[instrument]).map(sound => {
+                  const pads = this.state.instruments[instrument][sound]
 
-                return (
-                  <div
-                    style={{display: 'flex', flexDirection: 'row'}}
-                    onClick={() =>
-                      this.state.selectedInstrument !== instrument && this.setState({selectedInstrument: instrument})
-                    }
-                  >
-                    {pads.map((_drum, index)=> (
-                      <Square
-                        isBeginningOfMeasure={index === 0 || !(index % 4)}
-                        index={index}
-                        isOnCurrentBeat={this.state.currentBeat == index}
-                        onActivate={this.onActivateSquare}
-                        type={sound}
-                        instrumentIsSelected={this.state.selectedInstrument === instrument}
-                        updateSelectedInstrument={() => this.setState({selectedInstrument: instrument})}
-                        muted={this.state.mutedTracks.includes(instrument)}
-                      />
-                    ))}
-                  </div>
-                )
-              })}
+                  return (
+                    <div
+                      className="test"
+                      style={{display: 'flex', flexDirection: 'row'}}
+                      onClick={() =>
+                        this.state.selectedInstrument !== instrument && this.setState({selectedInstrument: instrument})
+                      }
+                    >
+                      {pads.map((_drum, index)=> (
+                        <Square
+                          isBeginningOfMeasure={index === 0 || !(index % 4)}
+                          index={index}
+                          isOnCurrentBeat={this.state.currentBeat == index}
+                          onActivate={this.onActivateSquare}
+                          type={sound}
+                          instrumentIsSelected={this.state.selectedInstrument === instrument}
+                          updateSelectedInstrument={() => this.setState({selectedInstrument: instrument})}
+                          muted={this.state.mutedTracks.includes(instrument)}
+                        />
+                      ))}
+                    </div>
+                  )
+                })}
             </div>
           </div>
 
