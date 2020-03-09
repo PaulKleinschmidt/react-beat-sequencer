@@ -117,12 +117,12 @@ class App extends React.Component {
   }
 
   render() {
-    StartAudioContext(Tone.context, '#test')
     Tone.context.resume()
 
     return (
       <div
         style={
+          // TODO: Implement Styled Components and remove inline styling 💅
           {
             backgroundColor: 'black',
             color: 'white',
@@ -160,7 +160,6 @@ class App extends React.Component {
 
                   return (
                     <div
-                      className="test"
                       style={{display: 'flex', flexDirection: 'row'}}
                       onClick={() =>
                         this.state.selectedInstrument !== instrument && this.setState({selectedInstrument: instrument})
