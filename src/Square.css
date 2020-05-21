@@ -2,9 +2,6 @@
     .square {
         width: 20px !important;
         height: 20px !important;
-        /* unfortuantely something weird happens with the height transition
-        when I edit these styles. Adding height here removes the animation. :(
-        TODO: Add it back somehow :) */
         border-width: 1px !important
     }
 }
